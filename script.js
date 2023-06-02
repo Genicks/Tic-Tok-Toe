@@ -11,16 +11,23 @@ arrayforinput = [
 ];
 
 let winner = false;
+let computerMoved = true;
 
 
 function renderUsersOption (index) {
-  if (winner == false) {
+  if (winner == true) {
+    resetBoard();
+    winner = false;
+    renderUsersOption(index);
+  }
+  else if (winner == false && computerMoved == true) {
     if (arrayforinput[index].element.innerHTML === '') {
       value = arrayforinput[index].element;
       value.innerHTML = 'X';
+      computerMoved = false;
       checkRows()
+      setTimeout(ComputerMove, 1000);
     }
-    ComputerMove();
   }
 }
 
@@ -29,6 +36,7 @@ function ComputerMove() {
   index = Math.ceil(Math.random() * 8)
   if (winner == false) {
     if (arrayforinput[index].element.innerHTML === '') {
+      computerMoved = true;
       value = arrayforinput[index].element;
       value.innerHTML = 'O';
       checkRows();
@@ -80,14 +88,20 @@ function checkRows () {
   if (result[0] == result[1] && result[0] == result[2] && result[0] != '') {
     renderWinner(result[0]+' is the winner');
     winner = true;
+    computerMoved = true;
+    addSkrikeLine(result[1], 1, 'row');
   }
   else if (result[3] == result[4] && result[3] == result[5] && result[3] != '') {
     renderWinner(result[3]+' is the winner');
     winner = true;
+    computerMoved = true;
+    addSkrikeLine(result[4], 4, 'row');
   }
   else if (result[6] == result[7] && result[6] == result[8] && result[6] != '') {
     renderWinner(result[6]+' is the winner');
     winner = true;
+    computerMoved = true;
+    addSkrikeLine(result[7], 7, 'row');
   }
   else {
     checkColumns();
@@ -100,14 +114,20 @@ function checkColumns () {
   if (result[0] == result[3] && result[0] == result[6] && result[0] != '') {
     renderWinner(result[0]+' is the winner');
     winner = true;
+    computerMoved = true;
+    ;addSkrikeLine(result[3], 3, 'column');
   }
   else if (result[1] == result[4] && result[1] == result[7] && result[1] != '') {
     renderWinner(result[1]+' is the winner');
     winner = true;
+    computerMoved = true;
+    ;addSkrikeLine(result[4], 4, 'column');
   }
   else if (result[2] == result[5] && result[2] == result[8] && result[2] != '') {
     renderWinner(result[2]+' is the winner');
     winner = true;
+    computerMoved = true;
+    ;addSkrikeLine(result[5], 5, 'column');
   }
   else {
     checkDiagonals()
@@ -120,13 +140,33 @@ function checkDiagonals () {
   if (result[0] == result[4] && result[0] == result[8] && result[0] != '') {
     renderWinner(result[0]+' is the winner');
     winner = true;
+    computerMoved = true;
+    addSkrikeLine(result[4], 4, 'diagonalLeft');
   }
   else if (result[2] == result[4] && result[2] == result[6] && result[2] != '') {
     renderWinner(result[2]+' is the winner');
     winner = true;
+    computerMoved = true;
+    addSkrikeLine(result[4], 4, 'diagonalRight');
   }
   else {
     console.log('No winner')
+  }
+}
+
+
+function addSkrikeLine (index, arrayIndex, typeOfTest) {
+  if (typeOfTest === 'row') {
+    arrayforinput[arrayIndex].element.innerHTML = (index+`<div class = "strikeLineRow"></div>`);
+  }
+  if (typeOfTest === 'column') {
+    arrayforinput[arrayIndex].element.innerHTML = (index+`<div class = "strikeLineColumn"></div>`);
+  }
+  if (typeOfTest === 'diagonalLeft') {
+    arrayforinput[arrayIndex].element.innerHTML = (index+`<div class = "strikeLineDiagonalLeft"></div>`);
+  }
+  if (typeOfTest === 'diagonalRight') {
+    arrayforinput[arrayIndex].element.innerHTML = (index+`<div class = "strikeLineDiagonalRight"></div>`);
   }
 }
 

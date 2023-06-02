@@ -1,5 +1,8 @@
 1. when user clicks display 'X'
-2. when the the user clicks the computer will run an function 
-
-3. to determine if a row is empty and play at the start
+2. when user clicks computer:
+3. to determine if a row is empty
+4. determine if column is empty
+5. determine if diagonals is empty 
+6. play computer random move
+7. when someone wins
 
