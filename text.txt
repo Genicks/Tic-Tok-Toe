@@ -1,0 +1,5 @@
+1. when user clicks display 'X'
+2. when the the user clicks the computer will run an function 
+
+3. to determine if a row is empty and play at the start
+

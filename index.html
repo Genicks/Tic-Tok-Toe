@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <title>XO</title>
+</head>
+<body>
+<div class="gameContainer">
+  <div class="text" id="winnerStatus"></div>
+
+  <div class="board">
+    <button class="button" id="0" 
+    onclick="
+      buttonIndex = 0;
+      renderUsersOption(buttonIndex);
+    "></button>
+
+    <button class="button" id="1" 
+    onclick="
+      buttonIndex = 1;
+      renderUsersOption(buttonIndex);
+    "></button>
+
+    <button class="button" id="2" 
+    onclick="
+      buttonIndex = 2;
+      renderUsersOption(buttonIndex);
+    "></button>
+
+    <button class="button" id="3" 
+    onclick="
+      buttonIndex = 3;
+      renderUsersOption(buttonIndex);
+    "></button>
+
+    <button class="button" id="4" 
+    onclick="
+      buttonIndex = 4;
+      renderUsersOption(buttonIndex);
+    "></button>
+
+    <button class="button" id="5" 
+    onclick="
+      buttonIndex = 5;
+      renderUsersOption(buttonIndex);
+    "></button>
+
+    <button class="button" id="6" 
+    onclick="
+      buttonIndex = 6;
+      renderUsersOption(buttonIndex);
+    "></button>
+
+    <button class="button" id="7" 
+    onclick="
+      buttonIndex = 7;
+      renderUsersOption(buttonIndex);
+    "></button>
+
+    <button class="button" id="8" 
+    onclick="
+      buttonIndex = 8;
+      renderUsersOption(buttonIndex);
+    "></button>
+  </div>
+
+  <button class="reset" onclick="
+    resetBoard()
+    ">Reset</button>
+  </div>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
