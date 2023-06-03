@@ -24,6 +24,7 @@ function renderUsersOption (index) {
     if (arrayforinput[index].element.innerHTML === '') {
       value = arrayforinput[index].element;
       value.innerHTML = 'X';
+      value.classList.add("optionX");
       computerMoved = false;
       checkRows()
       setTimeout(ComputerMove, 1000);
@@ -39,6 +40,7 @@ function ComputerMove() {
       computerMoved = true;
       value = arrayforinput[index].element;
       value.innerHTML = 'O';
+      value.classList.add("optionO");
       checkRows();
     }
     else if (testForDraw()) {
@@ -76,8 +78,9 @@ function ComputerMove() {
       arrayforinput[7].element.innerHTML != ''&&
       arrayforinput[8].element.innerHTML != ''
     ) {
-      renderWinner('DRAW');
-      winner = false;
+      renderWinner('Draw');
+      winner = true;
+      computerMoved = true;
       return true
     }
 }
@@ -127,7 +130,7 @@ function checkColumns () {
     renderWinner(result[2]+' is the winner');
     winner = true;
     computerMoved = true;
-    ;addSkrikeLine(result[5], 5, 'column');
+    addSkrikeLine(result[5], 5, 'column');
   }
   else {
     checkDiagonals()
@@ -174,22 +177,25 @@ function addSkrikeLine (index, arrayIndex, typeOfTest) {
 function renderWinner (text) {
   textElement = document.getElementById("winnerStatus");
   textElement.innerHTML = text;
+  textElement.classList.add("text")
 }
 
 
 function resetBoard () {
   let result = getValuesOfButtons()
-  arrayforinput[0].element.innerHTML = '';
-  arrayforinput[1].element.innerHTML = '';
-  arrayforinput[2].element.innerHTML = '';
-  arrayforinput[3].element.innerHTML = '';
-  arrayforinput[4].element.innerHTML = '';
-  arrayforinput[5].element.innerHTML = '';
-  arrayforinput[6].element.innerHTML = '';
-  arrayforinput[7].element.innerHTML = '';
-  arrayforinput[8].element.innerHTML = '';
+  arrayforinput.forEach(function(arrayforinput) {
+    arrayforinput.element.innerHTML = '';
+  })
+  
+  arrayforinput.forEach(function(arrayforinput) {
+    arrayforinput.element.classList.remove("optionO");
+    arrayforinput.element.classList.remove("optionX")
+  })
+
+
   renderWinner('')
   winner = false
   console.log('Board has been reset.')
+  
 }
 
